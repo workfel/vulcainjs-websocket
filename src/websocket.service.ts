@@ -1,7 +1,7 @@
 import { AbstractAdapter, IContainer } from 'vulcain-corejs';
 import { Injectable, LifeTime } from 'vulcain-corejs/dist';
 //
-import {  WebSocketComponent} from "./websocket.component";
+import { WebSocketComponent } from "./websocket.component";
 
 const SocketIo = require('socket.io');
 
@@ -13,15 +13,12 @@ export class WebSocketService {
     private io: SocketIO.Server;
 
     /**
-     *
-     * @param io the io server
-     * @param pathWs the path to scan folder with all socket io services
+     * 
+     * @param container 
+     * @param server The instance of express Server to attach socket.io on it
+     * @param services This is a list of websocket service who will be listened
      */
-    // constructor(private container: IContainer, server: AbstractAdapter, private pathWs: string = 'ws') {
-    //     this.io = new SocketIo(server);
-    // }
-
-    start(container: IContainer, server: AbstractAdapter, services: Array<string>, pathWs: string = 'ws') {
+    start(container: IContainer, server: AbstractAdapter, services: Array<string>) {
         this.container = container;
         this.io = new SocketIo(server);
         this.services = services;
