@@ -1,0 +1,31 @@
+{
+  "name": "vulcainjs-websocket",
+  "version": "1.0.0",
+  "description": "Websocket transport for Vulcainjs microservices",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/workfel/vulcainjs-websocket.git"
+  },
+  "keywords": [
+    "socket.io",
+    "websocket",
+    "nodejs",
+    "microservices",
+    "vulcain",
+    "vulcainjs"
+  ],
+  "author": "Johan PUJOL (https://github.com/workfel)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/workfel/vulcainjs-websocket/issues"
+  },
+  "homepage": "https://github.com/workfel/vulcainjs-websocket#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "vulcain-corejs": "^1.1.129"
+  }
+}
