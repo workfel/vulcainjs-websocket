@@ -1,6 +1,6 @@
 {
     "name": "vulcainjs-websocket",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Websocket transport for Vulcainjs microservices",
     "main": "dist/index.js",
     "scripts": {
