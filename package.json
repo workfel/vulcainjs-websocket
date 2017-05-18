@@ -1,6 +1,6 @@
 {
     "name": "vulcainjs-websocket",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "description": "Websocket transport for Vulcainjs microservices",
     "main": "dist/index.js",
     "scripts": {
@@ -25,12 +25,12 @@
     },
     "homepage": "https://github.com/workfel/vulcainjs-websocket#readme",
     "dependencies": {
+        "@types/socket.io": "^1.4.29",
         "socket.io": "^2.0.1",
         "vulcain-corejs": "^1.1.129"
     },
     "devDependencies": {
         "@types/express": "^4.0.35",
-        "@types/socket.io": "^1.4.29",
         "fs-extra": "^3.0.1",
         "gulp": "^3.9.1",
         "gulp-sourcemaps": "^2.6.0",
@@ -39,5 +39,6 @@
         "merge2": "^1.0.3",
         "tslint": "^5.2.0",
         "typescript": "^2.3.2"
-    }
+    },
+    "typings": "dist/index.d.ts"
 }
