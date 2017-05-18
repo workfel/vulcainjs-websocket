@@ -6,7 +6,9 @@ This plugin add WebSocket integration to vulcainjs framework.
 <img src="https://nodei.co/npm/vulcainjs-websocket.png?downloads=true&stars=true" alt=""/>
 
 <p/>
-<img src="https://david-dm.org/workfel/vulcainjs-websocket.svg" alt=""/>
+
+[![dependencies](https://img.shields.io/david/workfel/vulcainjs-websocket.svg)](https://www.npmjs.com/package/vulcainjs-websocket)
+[![license](https://img.shields.io/npm/l/vulcainjs-websocket.svg)](https://www.npmjs.com/package/vulcainjs-websocket)
 
 ## Installation
 
