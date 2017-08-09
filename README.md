@@ -1,6 +1,6 @@
 # vulcainjs-websocket
 
-This plugin add WebSocket integration to vulcainjs framework. 
+This plugin add WebSocket integration to vulcainjs framework (via Socket.io). 
 
 <p/>
 <img src="https://nodei.co/npm/vulcainjs-websocket.png?downloads=true&stars=true" alt=""/>
@@ -23,12 +23,15 @@ This is a small plugin for the [vulcainjs](http://www.vulcainjs.org/) server fra
 First of all create your [vulcain project](http://www.vulcainjs.org/gettingStarted/).
 When your project are created install the plugin `npm install vulcainjs-websocket`.
 
+## Client
+Use `socket.io` client API to connect to this `WebSocket`. 
+Once connected, do your `authentication` process (if needed) and wait for the `ready` event.
 
 ### Create a socket event
 Create a folder  `ws` into `src` directory. All the class in this folder will be inject into your application.
 
 ### Explanation
-For create a socket event we need to create an `Injectable` class. And implement an `IWs` interface.
+To create a socket event we need to create an `Injectable` class. And implement an `IWs` interface.
 The annotation `Injectable` will permit to autoload this class with the **DI**.
 
 ```js
@@ -45,17 +48,17 @@ import { IWs } from 'vulcainjs-websocket/dist';
 @Injectable(LifeTime.Singleton, 'WSChatMessage')
 export class WSChatMessage implements IWs {
 
-    // https://socket.io/docs/server-api/#socket
-    private socket: any;
-
     // https://socket.io/docs/server-api/#server
     private io: SocketIO.Server;
 
 
-    init(io: SocketIO.Server, socket: SocketIO.Socket) {
+    init(io: SocketIO.Server) {
         this.io = io;
-        this.socket = socket;
     }
+    
+    onNewSocket(socket: SocketIO.Socket, user?: any) {
+        // Do what you need to with your new socket, and associated user (if any)
+    } 
 
     onCall(msg: any): void {
         console.log('WSChatMessage onCall :', msg);
@@ -122,3 +125,29 @@ When you create a new WebSocket class you need to put it into the `allMyWebSocke
 @Injectable(LifeTime.Singleton, 'TheNameOfWebSocketClass')
 ```
 
+## Securing websocket
+Incoming websockets can be authorized using Vulcain's `TokenService`. Clients must be logged into the `vulcain service`  before starting the socket connection. By default, the library will accept unauthorized connections. Incoming connections will have a limited time to send their authorization token using :
+```
+socket.emit('authorize', {token: thetoken}); // Token must start with "Bearer "
+```
+If the token is valid, the server will send back an `authorized` event, along with the `user` adecoded by the `TokenService`, and call every `iWS` with the `socket` and its `user`.
+
+### Configuring security
+`IDynamicConfigurationProperties` can be set to customize security's behavior:
+
+#### `WEBSOCKET_ACCEPT_UNAUTHORIZED_CONNECTIONS`
+Defaults to `true`. 
+
+If set to `false`, the `WebSocketService` will close any unauthorized connection after the specified delay.
+
+If set to `true`, the `WebSocketService` will leave anonymous connections open. The sockets can still authorize within the specify delay.
+
+#### `WEBSOCKET_TIME_TO_AUTHORIZE_CONNECTIONS`
+Defaults to `2000`. 
+
+Corresponds to the delay the `WebSocket clients` have to send their `Authorization token`. 
+
+#### `WEBSOCKET_DISABLE_SECURITY`
+Defaults to `false`.
+
+Set to `true` if you want to disable security at all.
