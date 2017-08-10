@@ -37,6 +37,7 @@ export class WebSocketService {
         this.timeToAuthorizeConnectionInMs = System.createServiceConfigurationProperty("WEBSOCKET_TIME_TO_AUTHORIZE_CONNECTIONS", 1);
         this.securityDisabled = System.createServiceConfigurationProperty("WEBSOCKET_DISABLE_SECURITY", "false");
         // this.container.injectFrom(pathWs);
+        this.initializeServices(services);
         this.ws = new WebSocketComponent(this.container, this.io, this.services);
         this.initializeListener();
     }

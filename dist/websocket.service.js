@@ -39,6 +39,7 @@ let WebSocketService = class WebSocketService {
         this.timeToAuthorizeConnectionInMs = vulcain_corejs_1.System.createServiceConfigurationProperty("WEBSOCKET_TIME_TO_AUTHORIZE_CONNECTIONS", 1);
         this.securityDisabled = vulcain_corejs_1.System.createServiceConfigurationProperty("WEBSOCKET_DISABLE_SECURITY", "false");
         // this.container.injectFrom(pathWs);
+        this.initializeServices(services);
         this.ws = new websocket_component_1.WebSocketComponent(this.container, this.io, this.services);
         this.initializeListener();
     }
