@@ -34,7 +34,7 @@ export class WebSocketService {
 
         this.tokenService = this.container.get<TokenService>('TokenService');
         this.acceptUnauthorizedConnections = System.createServiceConfigurationProperty("WEBSOCKET_ACCEPT_UNAUTHORIZED_CONNECTIONS", "true");
-        this.timeToAuthorizeConnectionInMs = System.createServiceConfigurationProperty("WEBSOCKET_TIME_TO_AUTHORIZE_CONNECTIONS", 1);
+        this.timeToAuthorizeConnectionInMs = System.createServiceConfigurationProperty("WEBSOCKET_TIME_TO_AUTHORIZE_CONNECTIONS", 2000);
         this.securityDisabled = System.createServiceConfigurationProperty("WEBSOCKET_DISABLE_SECURITY", "false");
         // this.container.injectFrom(pathWs);
         this.initializeServices(services);
