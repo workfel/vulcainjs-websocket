@@ -20,10 +20,10 @@ export class WebSocketComponent {
      */
     newSocketHappen(socket: SocketIO.Socket, user?: any) {
         // Loop on all service to attach the new socket
-        this.services.forEach((service: IWs) => {
-            service.onNewSocket(socket, user);
+        this.services.forEach(async (service: IWs) => {
+            await service.onNewSocket(socket, user);
             socket.on(service.onSetEventName(), (msg) => {
-                service.onCall(msg);
+                service.onCall(msg, socket);
             });
         });
         socket.emit('ready');

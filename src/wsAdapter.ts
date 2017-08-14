@@ -12,5 +12,5 @@ export interface IWs {
 
     onSetEventName(): string;
 
-    onCall(msg: any): void;
+    onCall(msg: any, socket: SocketIO.Socket): void;
 }
