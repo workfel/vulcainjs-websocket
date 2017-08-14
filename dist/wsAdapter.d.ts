@@ -8,5 +8,5 @@ export interface IWs {
      */
     onSetRoomName(): string;
     onSetEventName(): string;
-    onCall(msg: any): void;
+    onCall(msg: any, socket: SocketIO.Socket): void;
 }
