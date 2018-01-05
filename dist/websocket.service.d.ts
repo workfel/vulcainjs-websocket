@@ -3,11 +3,22 @@ export declare class WebSocketService {
     private services;
     private container;
     private io;
+    private tokenService;
+    private acceptUnauthorizedConnections;
+    private timeToAuthorizeConnectionInMs;
+    private authorizedSockets;
+    private securityDisabled;
+    private ws;
     /**
      *
-     * @param io the io server
-     * @param pathWs the path to scan folder with all socket io services
+     * @param container
+     * @param server The instance of express Server to attach socket.io on it
+     * @param services This is a list of websocket service who will be listened
      */
-    start(container: IContainer, server: AbstractAdapter, services: Array<string>, pathWs?: string): void;
+    start(container: IContainer, server: AbstractAdapter, services: Array<string>): void;
     private initializeListener();
+    private checkAndInitializeSocket(socket);
+    private initializeServices(services);
+    private getUserToken(socket, token);
+    private startSocketAuthentication(socket);
 }
