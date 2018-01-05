@@ -29,8 +29,9 @@ export class WebSocketService {
      * @param services This is a list of websocket service who will be listened
      */
     start(container: IContainer, server: AbstractAdapter, services: Array<string>) {
+        let subPath : IDynamicProperty<string> = System.createServiceConfigurationProperty("WEBSOCKET_SUBPATH", "/socket.io");
         this.container = container;
-        this.io = new SocketIo(server);
+        this.io = new SocketIo(server, {path: subPath.value});
 
         this.tokenService = this.container.get<TokenService>('TokenService');
         this.acceptUnauthorizedConnections = System.createServiceConfigurationProperty("WEBSOCKET_ACCEPT_UNAUTHORIZED_CONNECTIONS", "true");
